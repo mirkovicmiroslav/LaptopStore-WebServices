@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/bank/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="bank" targetNamespace="http://www.example.org/bank/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/bank/">
+      <xsd:element name="addTransaction">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="payment" type="tns:PaymentType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addTransactionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="PaymentType">
+      	<xsd:sequence>
+      		<xsd:element name="cardNumber" type="xsd:string"></xsd:element>
+      		<xsd:element name="expirationDate" type="xsd:string"></xsd:element>
+      		<xsd:element name="cvc2" type="xsd:string"></xsd:element>
+      		<xsd:element name="amount" type="xsd:float"></xsd:element>
+      		<xsd:element name="cid" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addTransactionRequest">
+    <wsdl:part element="tns:addTransaction" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="addTransactionResponse">
+    <wsdl:part element="tns:addTransactionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="bank">
+    <wsdl:operation name="addTransaction">
+      <wsdl:input message="tns:addTransactionRequest"/>
+      <wsdl:output message="tns:addTransactionResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="bankSOAP" type="tns:bank">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addTransaction">
+      <soap:operation soapAction="http://www.example.org/bank/addTransaction"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="bank">
+    <wsdl:port binding="tns:bankSOAP" name="bankSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

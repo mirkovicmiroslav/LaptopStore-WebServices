@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/store/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="store" targetNamespace="http://www.example.org/store/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/store/">
+      <xsd:element name="getAllProducts">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllProductsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="products" type="tns:ProductType" maxOccurs="unbounded" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="ProductType">
+      	<xsd:sequence>
+      		<xsd:element name="idProduct" type="xsd:int"></xsd:element>
+      		<xsd:element name="battery" type="xsd:string"></xsd:element>
+      		<xsd:element name="brand" type="xsd:string"></xsd:element>
+      		<xsd:element name="description" type="xsd:string"></xsd:element>
+      		<xsd:element name="graphicCard" type="xsd:string"></xsd:element>
+      		<xsd:element name="hardDrive" type="xsd:string"></xsd:element>
+      		<xsd:element name="image" type="xsd:base64Binary"></xsd:element>
+      		<xsd:element name="itemWeight" type="xsd:string"></xsd:element>
+      		<xsd:element name="memoryType" type="xsd:string"></xsd:element>
+      		<xsd:element name="os" type="xsd:string"></xsd:element>
+      		<xsd:element name="packageDimension" type="xsd:string"></xsd:element>
+      		<xsd:element name="price" type="xsd:double"></xsd:element>
+      		<xsd:element name="processor" type="xsd:string"></xsd:element>
+      		<xsd:element name="ram" type="xsd:string"></xsd:element>
+      		<xsd:element name="stock" type="xsd:int"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getProduct">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="idProduct" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getProductResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="product" type="tns:ProductType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addProduct">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="product" type="tns:ProductType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addProductResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateProduct">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="product" type="tns:ProductType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateProductResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addTransaction">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="idProduct" type="xsd:int"></xsd:element>
+      			<xsd:element name="idUser" type="xsd:int"></xsd:element>
+      			<xsd:element name="price" type="xsd:float"></xsd:element>
+      			<xsd:element name="paymentSuccess" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addTransactionResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllProductsRequest">
+    <wsdl:part element="tns:getAllProducts" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAllProductsResponse">
+    <wsdl:part element="tns:getAllProductsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getProductRequest">
+  	<wsdl:part name="parameters" element="tns:getProduct"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductResponse">
+  	<wsdl:part name="parameters" element="tns:getProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addProductRequest">
+  	<wsdl:part name="parameters" element="tns:addProduct"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addProductResponse">
+  	<wsdl:part name="parameters" element="tns:addProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateProductRequest">
+  	<wsdl:part name="parameters" element="tns:updateProduct"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateProductResponse">
+  	<wsdl:part name="parameters" element="tns:updateProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTransactionRequest">
+  	<wsdl:part name="parameters" element="tns:addTransaction"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addTransactionResponse">
+  	<wsdl:part name="parameters" element="tns:addTransactionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="store">
+    <wsdl:operation name="getAllProducts">
+      <wsdl:input message="tns:getAllProductsRequest"/>
+      <wsdl:output message="tns:getAllProductsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getProduct">
+    	<wsdl:input message="tns:getProductRequest"></wsdl:input>
+    	<wsdl:output message="tns:getProductResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addProduct">
+    	<wsdl:input message="tns:addProductRequest"></wsdl:input>
+    	<wsdl:output message="tns:addProductResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProduct">
+    	<wsdl:input message="tns:updateProductRequest"></wsdl:input>
+    	<wsdl:output message="tns:updateProductResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTransaction">
+    	<wsdl:input message="tns:addTransactionRequest"></wsdl:input>
+    	<wsdl:output message="tns:addTransactionResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="storeSOAP" type="tns:store">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllProducts">
+      <soap:operation soapAction="http://www.example.org/store/getAllProducts"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="store">
+    <wsdl:port binding="tns:storeSOAP" name="storeSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

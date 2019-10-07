@@ -1,0 +1,406 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mt-4">{{ productData.brand }}</h1>
+      <hr />
+      <img
+        class="img-fluid rounded"
+        [src]="productImage"
+        width="900"
+        height="300"
+        alt=""
+      />
+      <hr />
+      <form #updateProductForm="ngForm">
+        <table *ngIf="isAdmin" class="table table-striped">
+          <tbody>
+            <tr>
+              <td>
+                <span style="color:grey">Image *</span>
+                <button
+                  style="float:right"
+                  class="btn btn-link"
+                  (click)="productImage.click()"
+                >
+                  Change picture
+                </button>
+                <input
+                  class="d-none"
+                  type="file"
+                  name="productImage"
+                  id="productImage"
+                  #productImage
+                  (change)="onFileSelected($event)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Model *</span>
+                <input
+                  type="text"
+                  name="brand"
+                  class="form-control"
+                  [(ngModel)]="productData.brand"
+                  placeholder="Enter model name here..."
+                  id="brand"
+                  #brand="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="brand.errors?.required && brand.touched"
+                  class="text-danger"
+                  >Model is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Price *</span>
+                <input
+                  type="text"
+                  name="price"
+                  class="form-control"
+                  [(ngModel)]="productData.price"
+                  placeholder="Enter price here..."
+                  id="price"
+                  #price="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="price.errors?.required && price.touched"
+                  class="text-danger"
+                  >Price is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Processor *</span>
+                <input
+                  type="text"
+                  name="processor"
+                  class="form-control"
+                  [(ngModel)]="productData.processor"
+                  placeholder="Enter processor here..."
+                  id="processor"
+                  #processor="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="processor.errors?.required && processor.touched"
+                  class="text-danger"
+                  >Processor is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Graphic card *</span>
+                <input
+                  type="text"
+                  name="graphicCard"
+                  class="form-control"
+                  [(ngModel)]="productData.graphicCard"
+                  placeholder="Enter graphic card here..."
+                  id="graphicCard"
+                  #graphicCard="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="graphicCard.errors?.required && graphicCard.touched"
+                  class="text-danger"
+                  >Graphic card is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Memory type *</span>
+                <input
+                  type="text"
+                  name="memoryType"
+                  class="form-control"
+                  [(ngModel)]="productData.memoryType"
+                  placeholder="Enter memory type here..."
+                  id="memoryType"
+                  #memoryType="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="memoryType.errors?.required && memoryType.touched"
+                  class="text-danger"
+                  >Memory type is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">RAM *</span>
+                <input
+                  type="text"
+                  name="ram"
+                  class="form-control"
+                  [(ngModel)]="productData.ram"
+                  placeholder="Enter ram here..."
+                  id="ram"
+                  #ram="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="ram.errors?.required && ram.touched"
+                  class="text-danger"
+                  >RAM is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Hard drive *</span>
+                <input
+                  type="text"
+                  name="hardDrive"
+                  class="form-control"
+                  [(ngModel)]="productData.hardDrive"
+                  placeholder="Enter hard drive here..."
+                  id="hardDrive"
+                  #hardDrive="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="hardDrive.errors?.required && hardDrive.touched"
+                  class="text-danger"
+                  >Hard drive is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Battery *</span>
+                <input
+                  type="text"
+                  name="battery"
+                  class="form-control"
+                  [(ngModel)]="productData.battery"
+                  placeholder="Enter battery here..."
+                  id="battery"
+                  #battery="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="battery.errors?.required && battery.touched"
+                  class="text-danger"
+                  >Battery is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">OS *</span>
+                <input
+                  type="text"
+                  name="os"
+                  class="form-control"
+                  [(ngModel)]="productData.os"
+                  placeholder="Enter os here..."
+                  id="os"
+                  #os="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="os.errors?.required && os.touched"
+                  class="text-danger"
+                  >OS is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Item weight *</span>
+                <input
+                  type="text"
+                  name="itemWeight"
+                  class="form-control"
+                  [(ngModel)]="productData.itemWeight"
+                  placeholder="Enter item weight here..."
+                  id="itemWeight"
+                  #itemWeight="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="itemWeight.errors?.required && itemWeight.touched"
+                  class="text-danger"
+                  >Item weight is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Package dimension *</span>
+                <input
+                  type="text"
+                  name="packageDimension"
+                  class="form-control"
+                  [(ngModel)]="productData.packageDimension"
+                  placeholder="Enter package dimension here..."
+                  id="packageDimension"
+                  #packageDimension="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="
+                    packageDimension.errors?.required &&
+                    packageDimension.touched
+                  "
+                  class="text-danger"
+                  >Package dimension is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Stock *</span>
+                <input
+                  type="number"
+                  name="stock"
+                  class="form-control"
+                  [(ngModel)]="productData.stock"
+                  placeholder="Enter stock here..."
+                  id="stock"
+                  #stock="ngModel"
+                  required
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="stock.errors?.required && stock.touched"
+                  class="text-danger"
+                  >Stock is required</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:grey">Description</span>
+                <textarea
+                  type="textarea"
+                  name="description"
+                  class="form-control"
+                  [(ngModel)]="productData.description"
+                  placeholder="Enter description here..."
+                  id="description"
+                  #description="ngModel"
+                  required
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  [disabled]="!updateProductForm.valid"
+                  class="btn btn-secondary bo"
+                  style="float: right;"
+                  type="submit"
+                  (click)="onUpdateProduct()"
+                >
+                  <span>
+                    Save changes
+                    <i
+                      class="fa fa-long-arrow-right m-l-7"
+                      aria-hidden="true"
+                    ></i>
+                  </span>
+                </button>
+              </td>
+            </tr>
+            <hr />
+          </tbody>
+        </table>
+      </form>
+      <table *ngIf="!isAdmin" class="table table-striped">
+        <tbody>
+          <tr>
+            <td><b>Model:</b> {{ productData.brand }}</td>
+          </tr>
+          <tr>
+            <td><b>Processor:</b>{{ productData.processor }}</td>
+          </tr>
+          <tr>
+            <td><b>Graphic card:</b> {{ productData.graphicCard }}</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Memory type:</b> {{ productData.memoryType }}
+              <small>MHz</small>
+            </td>
+          </tr>
+          <tr>
+            <td><b>RAM:</b> {{ productData.ram }}</td>
+          </tr>
+          <tr>
+            <td><b>Hard drive:</b> {{ productData.hardDrive }}</td>
+          </tr>
+          <tr>
+            <td><b>Battery:</b> {{ productData.battery }}</td>
+          </tr>
+          <tr>
+            <td><b>OS:</b> {{ productData.os }}</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Item weight:</b> {{ productData.itemWeight }} <small>kg</small>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Package dimension:</b> {{ productData.packageDimension }}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Description:</b> {{ productData.description }}</td>
+          </tr>
+          <hr />
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!isAdmin" class="col-md-4">
+      <div class="card my-4">
+        <h5 class="card-header">Free delivery!</h5>
+        <div class="card-body">
+          {{ productData.price }} <small>RSD</small>
+          <button
+            type="submit"
+            class="fadeIn fourth"
+            style="float:right;"
+            (click)="onBuy()"
+          >
+            Buy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

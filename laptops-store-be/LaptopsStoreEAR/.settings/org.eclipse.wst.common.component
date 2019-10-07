@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="LaptopsStoreEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="LaptopsStoreEJB.jar" deploy-path="/" handle="module:/resource/LaptopsStoreEJB/LaptopsStoreEJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LaptopsStoreJPA.jar" deploy-path="/lib" handle="module:/resource/LaptopsStoreJPA/LaptopsStoreJPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LaptopsStoreRest.war" deploy-path="/" handle="module:/resource/LaptopsStoreRest/LaptopsStoreRest">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

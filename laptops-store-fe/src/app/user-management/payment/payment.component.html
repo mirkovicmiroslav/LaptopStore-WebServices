@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 offset-md-4">
+      <div class="card ">
+        <div class="card-header">
+          <div class="row">
+            <h3 class="text-xs-center">Payment Details</h3>
+            <img
+              class="img-fluid cc-img"
+              src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png"
+            />
+          </div>
+        </div>
+        <div class="card-block">
+          <form #paymentForm="ngForm">
+            <div class="col-xs-7 col-md-7">
+              <div class="form-group">
+                <label><span class="hidden-xs">CARD NUMBER</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="cardNumber"
+                  [(ngModel)]="paymentData.cardNumber"
+                  id="cardNumber"
+                  #cardNumber="ngModel"
+                  placeholder="XXXXxxxxXXXXxxxx"
+                  required
+                  pattern="\d{4}\d{4}\d{4}\d{4}"
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="cardNumber.errors?.required && cardNumber.touched"
+                  class="text-danger"
+                  >Card number is required</span
+                >
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="cardNumber.errors?.pattern && cardNumber.touched"
+                  class="text-danger"
+                  >Card number must be numeric and MMYY form</span
+                >
+              </div>
+            </div>
+            <div class="col-xs-7 col-md-7">
+              <div class="form-group">
+                <label><span class="hidden-xs">EXPIRATION DATE</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="expirationDate"
+                  [(ngModel)]="paymentData.expirationDate"
+                  id="expirationDate"
+                  #expirationDate="ngModel"
+                  placeholder="MMYY"
+                  required
+                  pattern="^((0[1-9])|(1[0-2]))(\d{2})$"
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="
+                    expirationDate.errors?.required && expirationDate.touched
+                  "
+                  class="text-danger"
+                  >Expiration date is required</span
+                >
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="
+                    expirationDate.errors?.pattern && expirationDate.touched
+                  "
+                  class="text-danger"
+                  >Expiration date must be numeric and MMYY form</span
+                >
+              </div>
+            </div>
+            <div class="col-xs-5 col-md-5 float-xs-right">
+              <div class="form-group">
+                <label>CVC2 CODE</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="cvc2"
+                  [(ngModel)]="paymentData.cvc2"
+                  id="cvc2"
+                  #cvc2="ngModel"
+                  placeholder="XXX"
+                  required
+                  pattern="^([0-9]{3,4})$"
+                />
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="cvc2.errors?.required && cvc2.touched"
+                  class="text-danger"
+                  >CVC is required</span
+                >
+                <span
+                  class="validation-message"
+                  style="text-align: justify; display:block;"
+                  *ngIf="cvc2.errors?.pattern && cvc2.touched"
+                  class="text-danger"
+                  >CVC must be numeric and XXX form</span
+                >
+              </div>
+            </div>
+            <hr />
+            <div class="col-xs-5 col-md-5 float-xs-right">
+              <div class="form-group">Item: {{ item }}</div>
+            </div>
+            <div class="col-xs-5 col-md-5 float-xs-right">
+              <div class="form-group">
+                Price: {{ paymentData.amount }} <small>RSD</small>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-xs-12">
+                  <button
+                    [disabled]="!paymentForm.valid"
+                    class="btn btn-warning btn-lg btn-block"
+                    (click)="onPayment()"
+                  >
+                    Process payment
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
